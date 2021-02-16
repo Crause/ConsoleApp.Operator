@@ -1,0 +1,34 @@
+﻿using System;
+
+namespace ConsoleApp.Operator
+{
+  class Apple : Product
+  {
+    public Apple(string name, int calorie, int volume) : base(name, calorie, volume)
+    {
+
+    }
+    public static Apple Add(Apple apple1, Apple apple2)
+    {
+      var calories = (int)Math.Round((apple1.Calorie + apple2.Calorie) / 2.0);
+      var volume = apple1.Volume + apple2.Volume;
+      var apple = new Apple("Apple", calories, volume);
+
+      return apple;
+    }
+    public static Apple operator+ (Apple apple1, Apple apple2)
+    {
+      var calories = (int)Math.Round((apple1.Calorie + apple2.Calorie) / 2.0);
+      var volume = apple1.Volume + apple2.Volume;
+      var apple = new Apple("Apple", calories, volume);
+
+      return apple;
+    }
+    public static Apple operator+ (Apple apple1, int volume)
+    {
+      var apple = new Apple(apple1.Name, apple1.Calorie, apple1.Volume + volume);
+
+      return apple;
+    }
+  }
+}
